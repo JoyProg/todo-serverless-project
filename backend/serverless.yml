@@ -304,23 +304,23 @@ resources:
           Iops: 0
           VolumeSize: 10
           VolumeType: 'gp2'
-        AccessPolicies:
-          Version: '2012-10-17'
-          Statement:
-            - Effect: Allow
-              Principal:
-                AWS: !Sub 'arn:aws:sts::${AWS::AccountId}:assumed-role/${self:service}-${self:provider.stage}-${self:provider.region}-lambdaRole/serverless-todo-app-${self:provider.stage}-SyncWithElasticsearch'
-              Action: ['es:ESHttp*']
-              Resource: !Sub 'arn:aws:es:${self:provider.region}:${AWS::AccountId}:domain/todos-search-app-${self:provider.stage}/*'
-            - Effect: Allow
-              Principal:
-                AWS: '*'
-              Action: ['es:ESHttp*']
-              Resource: !Sub 'arn:aws:es:${self:provider.region}:${AWS::AccountId}:domain/todos-search-app-${self:provider.stage}/*'
-              Condition:
-                IpAddress:
-                  aws:SourceIp:
-                    - ipAddr
+        # AccessPolicies:
+        #   Version: '2012-10-17'
+        #   Statement:
+        #     - Effect: Allow
+        #       Principal:
+        #         AWS: !Sub 'arn:aws:sts::${AWS::AccountId}:assumed-role/${self:service}-${self:provider.stage}-${self:provider.region}-lambdaRole/serverless-todo-app-${self:provider.stage}-SyncWithElasticsearch'
+        #       Action: ['es:ESHttp*']
+        #       Resource: !Sub 'arn:aws:es:${self:provider.region}:${AWS::AccountId}:domain/todos-search-app-${self:provider.stage}/*'
+        #     - Effect: Allow
+        #       Principal:
+        #         AWS: '*'
+        #       Action: ['es:ESHttp*']
+        #       Resource: !Sub 'arn:aws:es:${self:provider.region}:${AWS::AccountId}:domain/todos-search-app-${self:provider.stage}/*'
+        #       Condition:
+        #         IpAddress:
+        #           aws:SourceIp:
+        #             - ipAddr
             
 
 
